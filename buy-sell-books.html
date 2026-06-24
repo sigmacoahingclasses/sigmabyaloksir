@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy & Sell Books - Sigma Classes</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* === BASE & VARIABLES === */
+        :root {
+            --bs-primary: #4f46e5;
+            --bs-primary-light: #818cf8;
+            --bs-accent: #25D366; /* WhatsApp Green */
+            --bs-dark: #0f172a;
+            --bs-text: #334155;
+            --bs-light: #ffffff;
+            --bs-glass-bg: rgba(255, 255, 255, 0.7);
+            --bs-glass-border: rgba(255, 255, 255, 0.4);
+            --bs-glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* === BACKGROUND & LAYOUT === */
+        .book-exchange-wrapper {
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            background-attachment: fixed;
+            color: var(--bs-light);
+            overflow-x: hidden;
+        }
+
+        .bs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Glassmorphism Utility */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: var(--bs-glass-shadow);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 45px 0 rgba(31, 38, 135, 0.3);
+        }
+
+        /* === HERO SECTION === */
+        .bs-hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            min-height: 80vh;
+            padding-top: 120px;
+        }
+
+        .bs-hero-text h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--bs-light);
+        }
+
+        .bs-hero-text h1 span {
+            color: var(--bs-accent);
+        }
+
+        .bs-hero-text p {
+            font-size: 1.2rem;
+            color: #e2e8f0;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .bs-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .bs-btn-wa {
+            background: var(--bs-accent);
+            color: #fff;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .bs-btn-wa:hover {
+            background: #1da851;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4);
+        }
+
+        .bs-hero-visual {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .floating-icon {
+            font-size: 12rem;
+            color: rgba(255, 255, 255, 0.9);
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
+        }
+
+        /* === FEATURES === */
+        .bs-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .bs-feature {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .bs-feature i {
+            font-size: 2.5rem;
+            color: var(--bs-accent);
+            margin-bottom: 20px;
+            background: rgba(37, 211, 102, 0.1);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+        }
+
+        .bs-feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .bs-feature p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        /* === CATEGORIES === */
+        .bs-categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .bs-category {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .bs-category i {
+            font-size: 1.8rem;
+            color: var(--bs-primary-light);
+            transition: color 0.3s;
+        }
+
+        .bs-category span {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .bs-category:hover i {
+            color: var(--bs-accent);
+        }
+
+        /* === HOW IT WORKS === */
+        .bs-steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .bs-step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--bs-primary-light), var(--bs-primary));
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .bs-step h3 {
+            margin-bottom: 10px;
+        }
+
+        .bs-step p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        /* === TRUST BADGES === */
+        .bs-trust {
+            background: rgba(0,0,0,0.2);
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+
+        .bs-trust-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .trust-badge i {
+            font-size: 2rem;
+            color: var(--bs-accent);
+        }
+
+        .trust-badge span {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* === FOOTER CTA === */
+        .bs-cta {
+            text-align: center;
+            padding: 100px 5%;
+        }
+
+        .bs-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        /* === FLOATING WHATSAPP BUTTON === */
+        .bs-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--bs-accent);
+            color: #fff;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+            transition: transform 0.3s;
+        }
+
+        .bs-fab:hover {
+            transform: scale(1.1);
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 992px) {
+            .bs-hero { flex-direction: column; text-align: center; padding-top: 80px; }
+            .bs-hero-text h1 { font-size: 3rem; }
+            .bs-hero-text p { margin: 0 auto 30px; }
+            .floating-icon { font-size: 8rem; }
+        }
+
+        @media (max-width: 768px) {
+            .bs-container { padding: 50px 5%; }
+            .section-title { font-size: 2rem; }
+            .bs-cta h2 { font-size: 1.8rem; }
+            .bs-trust-container { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<main class="book-exchange-wrapper">
+
+    <!-- HERO SECTION -->
+    <section class="bs-container bs-hero">
+        <div class="bs-hero-text" data-aos="fade-right" data-aos-duration="1000">
+            <h1>Buy & Sell <span>Books</span></h1>
+            <p>Give your books a second life and help fellow students succeed. Connect instantly through our trusted student network.</p>
+            <a href="https://wa.me/917985149938?text=Hello,%20I%20want%20information%20about%20buying/selling%20books." target="_blank" class="bs-btn bs-btn-wa">
+                <i class="fab fa-whatsapp"></i> Contact on WhatsApp
+            </a>
+        </div>
+        <div class="bs-hero-visual" data-aos="zoom-in" data-aos-duration="1200">
+            <i class="fas fa-book-open-reader floating-icon"></i>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="bs-container">
+        <h2 class="section-title" data-aos="fade-up">Why Use Our Platform?</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">A seamless bridge between students and the coaching institute.</p>
+        
+        <div class="bs-features-grid">
+            <div class="glass-card bs-feature" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-book-medical"></i>
+                <h3>Buy Quality Used Books</h3>
+                <p>Find well-maintained board and reference books required for your classes.</p>
+            </div>
+            <div class="glass-card bs-feature" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-hand-holding-dollar"></i>
+                <h3>Sell Your Old Books</h3>
+                <p>Pass on your knowledge to junior students by listing your previous year's books.</p>
+            </div>
+            <div class="glass-card bs-feature" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-layer-group"></i>
+                <h3>Subject-wise Availability</h3>
+                <p>Easily find books categorized strictly by subject and class level.</p>
+            </div>
+            <div class="glass-card bs-feature" data-aos="fade-up" data-aos-delay="400">
+                <i class="fas fa-headset"></i>
+                <h3>Quick WhatsApp Support</h3>
+                <p>No complex logins. Just message us and we handle the connection.</p>
+            </div>
+            <div class="glass-card bs-feature" data-aos="fade-up" data-aos-delay="500">
+                <i class="fas fa-leaf"></i>
+                <h3>Eco-Friendly Learning</h3>
+                <p>Recycle knowledge and save paper by reusing educational materials.</p>
+            </div>
+            <div class="glass-card bs-feature" data-aos="fade-up" data-aos-delay="600">
+                <i class="fas fa-user-shield"></i>
+                <h3>Trusted Community</h3>
+                <p>Exchange books safely within the verified Sigma Classes student network.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES SECTION -->
+    <section class="bs-container">
+        <h2 class="section-title" data-aos="fade-up">Available Categories</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Browse materials for Classes 9 to 12 across all streams.</p>
+
+        <div class="bs-categories-grid">
+            <!-- Science & Math -->
+            <div class="glass-card bs-category" data-aos="zoom-in" data-aos-delay="50">
+                <i class="fas fa-square-root-variable"></i><span>Mathematics</span>
+            </div>
+            <div class="glass-card bs-category" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-atom"></i><span>Physics</span>
+            </div>
+            <div class="glass-card bs-category" data-aos="zoom-in" data-aos-delay="150">
+                <i class="fas fa-flask"></i><span>Chemistry</span>
+            </div>
+            <div class="glass-card bs-category" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-dna"></i><span>Biology</span>
+            </div>
+            <!-- Languages & Tech -->
+            <div class="glass-card bs-category" data-aos="zoom-in" data-aos-delay="250">
+                <i class="fas fa-language"></i><span>English</span>
+            </div>
+            <div class="glass-card bs-category" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fas fa-om"></i><span>Hindi</span>
+            </div>
+            <div class="glass-card bs-category" data-aos="zoom-in" data-aos-delay="350">
+                <i class="fas fa-laptop-code"></i><span>Computer Science</span>
+            </div>
+            <!-- Commerce -->
+            <div class="glass-card bs-category" data-aos="zoom-in" data-aos-delay="400">
+                <i class="fas fa-calculator"></i><span>Accountancy</span>
+            </div>
+            <div class="glass-card bs-category" data-aos="zoom-in" data-aos-delay="450">
+                <i class="fas fa-chart-line"></i><span>Business Studies</span>
+            </div>
+            <div class="glass-card bs-category" data-aos="zoom-in" data-aos-delay="500">
+                <i class="fas fa-coins"></i><span>Economics</span>
+            </div>
+            <!-- Humanities -->
+            <div class="glass-card bs-category" data-aos="zoom-in" data-aos-delay="550">
+                <i class="fas fa-monument"></i><span>History</span>
+            </div>
+            <div class="glass-card bs-category" data-aos="zoom-in" data-aos-delay="600">
+                <i class="fas fa-globe-americas"></i><span>Geography</span>
+            </div>
+            <div class="glass-card bs-category" data-aos="zoom-in" data-aos-delay="650">
+                <i class="fas fa-landmark"></i><span>Political Science</span>
+            </div>
+            <!-- Competitive -->
+            <div class="glass-card bs-category" data-aos="zoom-in" data-aos-delay="700">
+                <i class="fas fa-medal"></i><span>Competitive Exams</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="bs-container">
+        <h2 class="section-title" data-aos="fade-up">How It Works</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">A simple 3-step process to get or list your books.</p>
+
+        <div class="bs-steps">
+            <div class="glass-card bs-step" data-aos="fade-up" data-aos-delay="100">
+                <div class="step-number">1</div>
+                <h3>Select Your Book</h3>
+                <p>Identify the specific subject or reference book you need, or gather the old books you want to pass on.</p>
+            </div>
+            <div class="glass-card bs-step" data-aos="fade-up" data-aos-delay="300">
+                <div class="step-number">2</div>
+                <h3>Message Us</h3>
+                <p>Click the WhatsApp button and let us know what you're looking for or offering. We manage the inventory.</p>
+            </div>
+            <div class="glass-card bs-step" data-aos="fade-up" data-aos-delay="500">
+                <div class="step-number">3</div>
+                <h3>Connect & Confirm</h3>
+                <p>We check availability and connect you directly with a verified student or arrange the exchange.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST SECTION -->
+    <section class="bs-trust">
+        <div class="bs-trust-container">
+            <div class="trust-badge" data-aos="fade-right" data-aos-delay="100">
+                <i class="fas fa-user-check"></i>
+                <span>Verified Student Support</span>
+            </div>
+            <div class="trust-badge" data-aos="fade-right" data-aos-delay="200">
+                <i class="fas fa-comments"></i>
+                <span>Easy Communication</span>
+            </div>
+            <div class="trust-badge" data-aos="fade-right" data-aos-delay="300">
+                <i class="fas fa-book-bookmark"></i>
+                <span>Subject-wise Assistance</span>
+            </div>
+            <div class="trust-badge" data-aos="fade-right" data-aos-delay="400">
+                <i class="fas fa-bolt"></i>
+                <span>Quick Response</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <section class="bs-cta" data-aos="zoom-in">
+        <h2>Looking for a Book or Want to Sell One?</h2>
+        <a href="https://wa.me/917985149938?text=Hello,%20I%20want%20information%20about%20buying/selling%20books." target="_blank" class="bs-btn bs-btn-wa">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+    </section>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/917985149938?text=Hello,%20I%20want%20information%20about%20buying/selling%20books." target="_blank" class="bs-fab" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</main>
+
+<!-- AOS Animation Library JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Initialize Scroll Animations
+    AOS.init({
+        once: true,       // whether animation should happen only once - while scrolling down
+        offset: 50,       // offset (in px) from the original trigger point
+        duration: 800,    // values from 0 to 3000, with step 50ms
+        easing: 'ease-out-cubic', // default easing for AOS animations
+    });
+</script>
+
+</body>
+</html>
