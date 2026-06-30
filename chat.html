@@ -589,9 +589,7 @@
                         email: user.email,
                         lastLogin: serverTimestamp()
                     });
-                    console.log("User saved to Firestore");
                 } catch (err) {
-                    console.error("Error saving user:", err);
                     showToast("Error saving profile: " + err.message);
                 }
 
@@ -607,10 +605,8 @@
         // --- LOAD USERS ---
         function loadUsers() {
             if(unsubUsers) unsubUsers();
-            console.log("Loading users...");
 
             unsubUsers = onSnapshot(collection(db, 'users'), (snapshot) => {
-                console.log("Users loaded:", snapshot.size);
                 const list = document.getElementById('contact-list');
                 list.innerHTML = '';
                 snapshot.forEach((docSnap) => {
@@ -638,7 +634,6 @@
                     list.appendChild(div);
                 });
             }, (err) => {
-                console.error("Users listener error:", err);
                 showToast("Failed to load users: " + err.message);
             });
         }
@@ -647,7 +642,6 @@
         function openChat(targetUser) {
             const ids = [currentUser.uid, targetUser.uid].sort();
             currentRoomId = `${ids[0]}_${ids[1]}`;
-            console.log("Opening chat room:", currentRoomId);
 
             document.getElementById('empty-state').classList.add('hidden');
             document.getElementById('active-chat').classList.remove('hidden');
@@ -671,17 +665,12 @@
 
         // --- LOAD MESSAGES ---
         function loadMessages(roomId) {
-            if (unsubMessages) {
-                console.log("Unsubscribing from previous messages");
-                unsubMessages();
-            }
+            if (unsubMessages) unsubMessages();
 
-            console.log("Loading messages for room:", roomId);
             const msgRef = collection(db, 'rooms', roomId, 'messages');
             const q = query(msgRef, orderBy('timestamp', 'asc'));
 
             unsubMessages = onSnapshot(q, (snapshot) => {
-                console.log("Messages snapshot received:", snapshot.size, "messages");
                 const container = document.getElementById('messages');
                 container.innerHTML = '';
                 snapshot.forEach((docSnap) => {
@@ -701,7 +690,6 @@
                 });
                 container.scrollTop = container.scrollHeight;
             }, (err) => {
-                console.error("Messages listener error:", err);
                 showToast("Failed to load messages: " + err.message);
             });
         }
@@ -716,27 +704,20 @@
 
         async function sendMessage() {
             const text = msgInput.value.trim();
-            if (!text || !currentRoomId) {
-                console.warn("Cannot send: empty text or no room selected");
-                return;
-            }
+            if (!text || !currentRoomId) return;
 
             msgInput.value = '';
             sendBtn.disabled = true;
 
             try {
-                const msgData = {
+                await addDoc(collection(db, 'rooms', currentRoomId, 'messages'), {
                     text: text,
                     senderId: currentUser.uid,
                     senderName: currentUser.displayName,
                     senderPhoto: currentUser.photoURL,
                     timestamp: serverTimestamp()
-                };
-                console.log("Sending message to room:", currentRoomId, msgData);
-                await addDoc(collection(db, 'rooms', currentRoomId, 'messages'), msgData);
-                console.log("Message sent successfully");
+                });
             } catch (err) {
-                console.error("Send error:", err);
                 showToast("Failed to send: " + err.message);
             }
 
@@ -749,9 +730,7 @@
             if (confirm("Delete this message?")) {
                 try {
                     await deleteDoc(doc(db, 'rooms', currentRoomId, 'messages', msgId));
-                    console.log("Message deleted:", msgId);
                 } catch (err) {
-                    console.error("Delete error:", err);
                     showToast("Failed to delete: " + err.message);
                 }
             }
@@ -764,9 +743,7 @@
                     const snapshot = await getDocs(query(collection(db, 'rooms', currentRoomId, 'messages')));
                     const deletePromises = snapshot.docs.map(d => deleteDoc(doc(db, 'rooms', currentRoomId, 'messages', d.id)));
                     await Promise.all(deletePromises);
-                    console.log("Chat cleared");
                 } catch (err) {
-                    console.error("Clear chat error:", err);
                     showToast("Failed to clear chat: " + err.message);
                 }
             }
