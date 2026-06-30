@@ -2,493 +2,857 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sigma Coaching Classes - Learn Today, Lead Tomorrow</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sigma Community by Alok Sir</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #1a237e; --primary-light: #3949ab; --accent: #ffc107; --accent-dark: #ff8f00; --white: #ffffff; --light-bg: #f5f7fa; --dark-bg: #0d1b3e; --text-dark: #1a1a2e; --text-light: #666; --success: #4caf50; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background: var(--light-bg); color: var(--text-dark); overflow-x: hidden; }
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--dark-bg); }
-        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 5px; }
-        #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-        nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: all 0.4s ease; background: transparent; }
-        nav.scrolled { background: rgba(13, 27, 62, 0.95); backdrop-filter: blur(20px); box-shadow: 0 5px 30px rgba(0,0,0,0.3); padding: 10px 5%; }
-        .logo { display: flex; align-items: center; gap: 12px; font-size: 1.8rem; font-weight: 800; color: var(--white); text-decoration: none; animation: slideInLeft 0.8s ease; }
-        .logo i { color: var(--accent); font-size: 2rem; animation: float 3s ease-in-out infinite; }
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a { color: var(--white); text-decoration: none; font-weight: 500; font-size: 0.95rem; position: relative; padding: 5px 0; transition: color 0.3s; }
-        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-links a:hover { color: var(--accent); }
-        .mobile-menu-btn { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
-        .hero { min-height: 100vh; background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary) 50%, var(--primary-light) 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 100px 5% 50px; }
-        .hero::before { content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,193,7,0.15) 0%, transparent 70%); border-radius: 50%; top: -200px; right: -200px; animation: pulse 4s ease-in-out infinite; }
-        .hero::after { content: ''; position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%); border-radius: 50%; bottom: -100px; left: -100px; animation: pulse 5s ease-in-out infinite reverse; }
-        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1400px; width: 100%; align-items: center; position: relative; z-index: 1; }
-        .hero-text h1 { font-size: 4rem; font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 20px; animation: fadeInUp 1s ease; }
-        .hero-text h1 span { color: var(--accent); display: inline-block; animation: glow 2s ease-in-out infinite alternate; }
-        .hero-text .tagline { font-size: 1.3rem; color: rgba(255,255,255,0.8); margin-bottom: 30px; font-style: italic; animation: fadeInUp 1s ease 0.2s both; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: var(--dark-bg); padding: 12px 30px; border-radius: 50px; font-weight: 700; font-size: 1.1rem; margin-bottom: 25px; animation: fadeInUp 1s ease 0.3s both, shake 2s ease-in-out infinite; box-shadow: 0 10px 30px rgba(255,193,7,0.3); }
-        .hero-badge i { animation: bellRing 1s ease-in-out infinite; }
-        .hero-classes { display: inline-block; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 10px 25px; border-radius: 50px; color: var(--white); font-weight: 600; margin-bottom: 30px; animation: fadeInUp 1s ease 0.4s both; border: 1px solid rgba(255,255,255,0.2); }
-        .hero-buttons { display: flex; flex-wrap: wrap; gap: 20px; animation: fadeInUp 1s ease 0.5s both; }
-        .btn { padding: 15px 40px; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; border: none; }
-        .btn-primary { background: var(--accent); color: var(--dark-bg); box-shadow: 0 10px 30px rgba(255,193,7,0.3); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,193,7,0.4); }
-        .btn-outline { background: transparent; color: var(--white); border: 2px solid var(--white); }
-        .btn-outline:hover { background: var(--white); color: var(--dark-bg); transform: translateY(-3px); }
-        .hero-visual { position: relative; animation: fadeInRight 1s ease 0.3s both; }
-        .hero-visual .floating-card { background: rgba(255,255,255,0.95); border-radius: 20px; padding: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.3); transform: rotate(-3deg); animation: floatCard 6s ease-in-out infinite; }
-        .floating-card h3 { color: var(--primary); font-size: 1.5rem; margin-bottom: 15px; }
-        .floating-card .feature-list { list-style: none; }
-        .floating-card .feature-list li { padding: 8px 0; display: flex; align-items: center; gap: 10px; color: var(--text-dark); }
-        .floating-card .feature-list li i { color: var(--success); }
-        .mode-badges { display: flex; gap: 15px; margin-top: 30px; }
-        .mode-badge { background: var(--white); padding: 15px 25px; border-radius: 15px; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: float 4s ease-in-out infinite; }
-        .mode-badge:nth-child(2) { animation-delay: 0.5s; }
-        .mode-badge i { font-size: 1.5rem; color: var(--primary); }
-        .stats-bar { background: var(--white); padding: 40px 5%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1200px; margin: -50px auto 0; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); position: relative; z-index: 10; animation: fadeInUp 1s ease 0.6s both; }
-        .stat-item { text-align: center; padding: 20px; }
-        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--primary); display: block; }
-        .stat-label { color: var(--text-light); font-weight: 500; font-size: 0.9rem; }
-        section { padding: 100px 5%; position: relative; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-size: 2.8rem; font-weight: 800; color: var(--primary); margin-bottom: 15px; position: relative; display: inline-block; }
-        .section-header h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--accent); border-radius: 2px; }
-        .section-header p { color: var(--text-light); font-size: 1.1rem; max-width: 600px; margin: 20px auto 0; }
-        .why-us { background: var(--white); }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .feature-card { background: var(--light-bg); padding: 40px 30px; border-radius: 20px; text-align: center; transition: all 0.4s ease; border: 2px solid transparent; position: relative; overflow: hidden; }
-        .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transition: transform 0.4s ease; }
-        .feature-card:hover::before { transform: scaleX(1); }
-        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--accent); }
-        .feature-icon { width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 2rem; color: var(--white); transition: all 0.4s ease; }
-        .feature-card:hover .feature-icon { transform: rotateY(360deg); background: linear-gradient(135deg, var(--accent), var(--accent-dark)); }
-        .feature-card h3 { font-size: 1.3rem; margin-bottom: 15px; color: var(--primary); }
-        .feature-card p { color: var(--text-light); line-height: 1.7; }
-        .fee-section { background: linear-gradient(135deg, var(--dark-bg), var(--primary)); position: relative; overflow: hidden; }
-        .fee-section::before { content: ''; position: absolute; width: 100%; height: 100%; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-        .fee-section .section-header h2, .fee-section .section-header p { color: var(--white); }
-        .fee-section .section-header h2::after { background: var(--accent); }
-        .fee-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
-        .fee-card { background: rgba(255,255,255,0.95); border-radius: 25px; padding: 40px 30px; text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden; }
-        .fee-card.featured { transform: scale(1.05); box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
-        .fee-card.featured::before { content: 'MOST POPULAR'; position: absolute; top: 20px; right: -35px; background: var(--accent); color: var(--dark-bg); padding: 5px 40px; font-size: 0.75rem; font-weight: 700; transform: rotate(45deg); }
-        .fee-card:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
-        .fee-card .class-badge { display: inline-block; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: var(--white); padding: 10px 30px; border-radius: 50px; font-weight: 700; font-size: 1.2rem; margin-bottom: 20px; }
-        .fee-card .price { font-size: 3.5rem; font-weight: 900; color: var(--primary); line-height: 1; }
-        .fee-card .price span { font-size: 1.5rem; vertical-align: super; }
-        .fee-card .price-period { color: var(--text-light); font-weight: 500; margin-bottom: 25px; }
-        .fee-features { list-style: none; text-align: left; margin-bottom: 30px; }
-        .fee-features li { padding: 10px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; }
-        .fee-features li i { color: var(--success); }
-        .fee-card .btn-enroll { width: 100%; padding: 15px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: var(--white); border: none; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s; }
-        .fee-card .btn-enroll:hover { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: var(--dark-bg); transform: scale(1.05); }
-        .scholarship-section { background: var(--white); }
-        .scholarship-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1200px; margin: 0 auto; align-items: center; }
-        .scholarship-visual { position: relative; }
-        .scholarship-visual .trophy { font-size: 15rem; color: var(--accent); animation: float 3s ease-in-out infinite, glow 2s ease-in-out infinite alternate; display: block; text-align: center; }
-        .scholarship-items { display: flex; flex-direction: column; gap: 25px; }
-        .scholarship-item { background: var(--light-bg); padding: 25px 30px; border-radius: 15px; display: flex; align-items: flex-start; gap: 20px; transition: all 0.3s ease; border-left: 4px solid var(--accent); }
-        .scholarship-item:hover { transform: translateX(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .scholarship-item i { font-size: 2rem; color: var(--accent); margin-top: 5px; }
-        .scholarship-item h4 { color: var(--primary); margin-bottom: 5px; font-size: 1.1rem; }
-        .scholarship-item p { color: var(--text-light); font-size: 0.95rem; }
-        .library-section { background: linear-gradient(135deg, #f8f9fa, #e9ecef); }
-        .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
-        .book-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.4s ease; position: relative; }
-        .book-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
-        .book-cover { height: 200px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .book-cover::before { content: ''; position: absolute; width: 150%; height: 150%; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 20px); animation: slideDiagonal 20s linear infinite; }
-        .book-cover i { font-size: 4rem; color: rgba(255,255,255,0.9); z-index: 1; }
-        .book-info { padding: 25px; }
-        .book-info h3 { color: var(--primary); font-size: 1.1rem; margin-bottom: 8px; }
-        .book-info .book-meta { display: flex; gap: 15px; margin-bottom: 15px; font-size: 0.85rem; color: var(--text-light); }
-        .book-info .book-meta span { display: flex; align-items: center; gap: 5px; }
-        .book-actions { display: flex; gap: 10px; }
-        .book-actions button { flex: 1; padding: 10px; border: none; border-radius: 10px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .btn-view { background: var(--light-bg); color: var(--primary); }
-        .btn-view:hover { background: var(--primary); color: var(--white); }
-        .btn-download { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: var(--white); }
-        .btn-download:hover { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: var(--dark-bg); }
-        .upload-area { max-width: 600px; margin: 0 auto 50px; background: var(--white); border: 3px dashed var(--primary); border-radius: 20px; padding: 50px; text-align: center; transition: all 0.3s; cursor: pointer; }
-        .upload-area:hover, .upload-area.dragover { background: rgba(26, 35, 126, 0.05); border-color: var(--accent); }
-        .upload-area i { font-size: 3rem; color: var(--primary); margin-bottom: 15px; }
-        .upload-area h3 { color: var(--primary); margin-bottom: 10px; }
-        .upload-area p { color: var(--text-light); }
-        .upload-area input { display: none; }
-        .contact-section { background: var(--white); }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1200px; margin: 0 auto; }
-        .contact-info { display: flex; flex-direction: column; gap: 30px; }
-        .contact-card { background: var(--light-bg); padding: 30px; border-radius: 20px; display: flex; align-items: flex-start; gap: 20px; transition: all 0.3s ease; }
-        .contact-card:hover { transform: translateX(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .contact-card .icon-box { width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.5rem; flex-shrink: 0; }
-        .contact-card h4 { color: var(--primary); margin-bottom: 5px; }
-        .contact-card p, .contact-card a { color: var(--text-light); text-decoration: none; transition: color 0.3s; }
-        .contact-card a:hover { color: var(--primary); }
-        .contact-form { background: var(--light-bg); padding: 40px; border-radius: 20px; }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 8px; color: var(--primary); font-weight: 600; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 15px 20px; border: 2px solid #e0e0e0; border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 1rem; transition: all 0.3s; background: var(--white); }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(26, 35, 126, 0.1); }
-        .form-group textarea { resize: vertical; min-height: 120px; }
-        .contact-form .btn-submit { width: 100%; padding: 18px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: var(--white); border: none; border-radius: 12px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .contact-form .btn-submit:hover { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: var(--dark-bg); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,193,7,0.3); }
-        footer { background: var(--dark-bg); color: var(--white); padding: 60px 5% 30px; }
-        .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto 40px; }
-        .footer-brand h3 { font-size: 1.8rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .footer-brand h3 i { color: var(--accent); }
-        .footer-brand p { color: rgba(255,255,255,0.7); line-height: 1.8; }
-        .footer-links h4 { color: var(--accent); margin-bottom: 20px; font-size: 1.1rem; }
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 12px; }
-        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; transition: all 0.3s; display: flex; align-items: center; gap: 8px; }
-        .footer-links a:hover { color: var(--accent); transform: translateX(5px); }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; text-align: center; color: rgba(255,255,255,0.5); }
-        .footer-bottom .social-links { margin-bottom: 20px; }
-        .footer-bottom .social-links a { display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: rgba(255,255,255,0.1); border-radius: 50%; color: var(--white); margin: 0 8px; font-size: 1.2rem; transition: all 0.3s; text-decoration: none; }
-        .footer-bottom .social-links a:hover { background: var(--accent); color: var(--dark-bg); transform: translateY(-5px); }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s; backdrop-filter: blur(5px); }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal { background: var(--white); border-radius: 25px; padding: 40px; max-width: 500px; width: 90%; transform: scale(0.8); transition: all 0.3s; position: relative; }
-        .modal-overlay.active .modal { transform: scale(1); }
-        .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-light); transition: color 0.3s; }
-        .modal-close:hover { color: var(--primary); }
-        .modal h3 { color: var(--primary); margin-bottom: 20px; font-size: 1.5rem; }
-        .toast-container { position: fixed; bottom: 30px; right: 30px; z-index: 3000; display: flex; flex-direction: column; gap: 10px; }
-        .toast { background: var(--white); padding: 20px 25px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 15px; transform: translateX(120%); transition: all 0.4s ease; border-left: 4px solid var(--success); min-width: 300px; }
-        .toast.show { transform: translateX(0); }
-        .toast i { font-size: 1.5rem; color: var(--success); }
-        .toast.error { border-left-color: #f44336; }
-        .toast.error i { color: #f44336; }
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.12);
+            --text-primary: #f0f2f5;
+            --text-secondary: #94a3b8;
+            --accent-start: #8b5cf6;
+            --accent-end: #ec4899;
+            --accent-cyan: #06b6d4;
+            --msg-own-start: #7c3aed;
+            --msg-own-end: #db2777;
+            --msg-other: rgba(15, 23, 42, 0.7);
+            --danger: #f43f5e;
+            --success: #10b981;
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+        }
 
-        /* Floating Chat Button */
-        .floating-chat-btn {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: linear-gradient(135deg, #FF007A, #7928CA);
-            color: white;
-            width: 65px;
-            height: 65px;
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        html, body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            height: 100vh; height: 100dvh;
+            overflow: hidden; width: 100%;
+            background: #020617;
+            color: var(--text-primary);
+        }
+
+        .mesh-bg {
+            position: fixed; inset: 0; z-index: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
+                linear-gradient(180deg, #020617 0%, #0f172a 50%, #1e1b4b 100%);
+            animation: meshShift 20s ease-in-out infinite;
+        }
+
+        @keyframes meshShift { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
+
+        .orb {
+            position: fixed; border-radius: 50%; filter: blur(80px);
+            z-index: 0; pointer-events: none;
+            animation: orbFloat 15s ease-in-out infinite;
+        }
+
+        .orb-1 { width: 400px; height: 400px; background: rgba(139, 92, 246, 0.2); top: -100px; left: -100px; animation-delay: 0s; }
+        .orb-2 { width: 300px; height: 300px; background: rgba(236, 72, 153, 0.15); bottom: -50px; right: -50px; animation-delay: -5s; }
+        .orb-3 { width: 250px; height: 250px; background: rgba(6, 182, 212, 0.12); top: 50%; left: 50%; animation-delay: -10s; }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* --- AUTH SCREEN --- */
+        #auth-screen {
+            position: fixed; inset: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-card {
+            position: relative;
+            background: var(--glass-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--glass-border);
+            padding: 48px 36px;
+            border-radius: var(--radius-xl);
+            width: 100%; max-width: 420px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px var(--glass-highlight);
+            animation: cardEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .auth-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--accent-start), var(--accent-end), var(--accent-cyan));
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        @keyframes cardEnter { from { opacity: 0; transform: translateY(40px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+        .auth-logo { width: 80px; height: 80px; margin: 0 auto 24px; position: relative; }
+        .auth-logo-ring {
+            position: absolute; inset: 0; border-radius: 50%;
+            border: 2px solid transparent;
+            background: linear-gradient(var(--accent-start), var(--accent-end)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            animation: ringSpin 8s linear infinite;
+        }
+        @keyframes ringSpin { to { transform: rotate(360deg); } }
+
+        .auth-logo-inner {
+            position: absolute; inset: 8px;
+            background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 10px 30px rgba(121, 40, 202, 0.4);
-            z-index: 1000;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-            animation: pulse-chat 2s infinite;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
         }
-        .floating-chat-btn:hover {
-            transform: scale(1.1);
-            color: white;
+        .auth-logo svg { width: 36px; height: 36px; color: white; }
+
+        .auth-title {
+            font-size: 28px; font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #c4b5fd 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; margin-bottom: 4px; letter-spacing: -0.5px;
         }
 
-        @keyframes pulse-chat {
-            0% { box-shadow: 0 0 0 0 rgba(121, 40, 202, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(121, 40, 202, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(121, 40, 202, 0); }
+        .auth-subtitle { color: var(--text-secondary); font-size: 16px; font-weight: 500; margin-bottom: 8px; }
+        .auth-tagline {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 16px; background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 100px;
+            font-size: 12px; color: #c4b5fd; font-weight: 600;
+            letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 32px;
+        }
+        .auth-tagline::before {
+            content: ''; width: 6px; height: 6px;
+            background: var(--success); border-radius: 50%;
+            box-shadow: 0 0 8px var(--success);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.8); } }
+
+        .google-btn {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            width: 100%; padding: 16px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            color: var(--text-primary); border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md); font-size: 15px; font-weight: 600;
+            cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .google-btn::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(236,72,153,0.2));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .google-btn:hover { border-color: rgba(139, 92, 246, 0.4); transform: translateY(-2px); box-shadow: 0 10px 40px -10px rgba(139, 92, 246, 0.3); }
+        .google-btn:hover::before { opacity: 1; }
+        .google-btn:active { transform: translateY(0); }
+        .google-btn span { position: relative; z-index: 1; }
+
+        #auth-error { color: var(--danger); font-size: 13px; margin-top: 16px; min-height: 20px; font-weight: 500; }
+
+        .sponsor-footer { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--glass-border); }
+        .sponsor-footer p { color: var(--text-secondary); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
+
+        /* --- MAIN APP --- */
+        #app { display: none; height: 100vh; height: 100dvh; flex-direction: row; position: relative; z-index: 1; }
+        #app.active { display: flex; }
+
+        .sidebar {
+            width: 340px; min-width: 280px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid var(--glass-border);
+            display: flex; flex-direction: column; flex-shrink: 0;
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        @keyframes floatCard { 0%, 100% { transform: rotate(-3deg) translateY(0); } 50% { transform: rotate(-3deg) translateY(-15px); } }
-        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 0.8; } }
-        @keyframes glow { from { text-shadow: 0 0 10px rgba(255,193,7,0.5); } to { text-shadow: 0 0 30px rgba(255,193,7,0.8), 0 0 60px rgba(255,193,7,0.4); } }
-        @keyframes shake { 0%, 100% { transform: rotate(0deg); } 10% { transform: rotate(-2deg); } 20% { transform: rotate(2deg); } 30% { transform: rotate(-2deg); } 40% { transform: rotate(0deg); } }
-        @keyframes bellRing { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(15deg); } 40% { transform: rotate(-15deg); } 60% { transform: rotate(10deg); } 80% { transform: rotate(-10deg); } }
-        @keyframes slideDiagonal { 0% { transform: translate(0, 0); } 100% { transform: translate(-50px, -50px); } }
-        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        @media (max-width: 992px) { .hero-content { grid-template-columns: 1fr; text-align: center; } .hero-text h1 { font-size: 2.8rem; } .hero-buttons { justify-content: center; } .mode-badges { justify-content: center; } .stats-bar { grid-template-columns: repeat(2, 1fr); } .scholarship-content { grid-template-columns: 1fr; } .contact-grid { grid-template-columns: 1fr; } .footer-content { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 768px) { .nav-links { display: none; } .mobile-menu-btn { display: block; } .hero-text h1 { font-size: 2.2rem; } .stats-bar { grid-template-columns: 1fr; margin: -30px 20px 0; } .fee-card.featured { transform: scale(1); } .footer-content { grid-template-columns: 1fr; } section { padding: 60px 5%; } .floating-chat-btn { width: 55px; height: 55px; font-size: 1.5rem; bottom: 20px; left: 20px; } }
+        .sidebar-header {
+            padding: 16px 20px; border-bottom: 1px solid var(--glass-border);
+            display: flex; align-items: center; justify-content: space-between;
+            min-height: 72px; background: rgba(2, 6, 23, 0.4);
+        }
+
+        .my-profile { display: flex; align-items: center; gap: 12px; }
+        .avatar {
+            width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+            border: 2px solid var(--glass-border);
+            box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+            flex-shrink: 0; transition: all 0.3s;
+        }
+        .avatar:hover { box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.4); transform: scale(1.05); }
+
+        .logout-btn {
+            background: rgba(244, 63, 94, 0.1); border: 1px solid rgba(244, 63, 94, 0.2);
+            color: var(--danger); cursor: pointer; font-weight: 600; font-size: 12px;
+            padding: 8px 16px; border-radius: var(--radius-sm); transition: all 0.3s; letter-spacing: 0.5px;
+        }
+        .logout-btn:hover { background: var(--danger); color: white; box-shadow: 0 4px 20px rgba(244, 63, 94, 0.3); transform: translateY(-1px); }
+
+        .section-title {
+            padding: 14px 20px 10px; font-size: 10px; color: var(--accent-cyan);
+            text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
+            background: rgba(6, 182, 212, 0.05);
+        }
+
+        .chat-list { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 8px; }
+
+        .contact-item {
+            display: flex; align-items: center; gap: 14px;
+            padding: 12px 16px; cursor: pointer; border-radius: var(--radius-md);
+            margin: 4px 8px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid transparent; min-height: 68px; position: relative; overflow: hidden;
+        }
+        .contact-item::before {
+            content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+            width: 3px; height: 0;
+            background: linear-gradient(180deg, var(--accent-start), var(--accent-end));
+            border-radius: 0 4px 4px 0; transition: height 0.3s;
+        }
+        .contact-item:hover { background: rgba(255, 255, 255, 0.04); border-color: var(--glass-border); transform: translateX(4px); }
+        .contact-item:hover::before { height: 60%; }
+        .contact-item.active {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1));
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.1);
+        }
+        .contact-item.active::before { height: 80%; }
+
+        .contact-name { font-weight: 600; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); }
+        .contact-email { font-size: 12px; color: var(--text-secondary); margin-top: 3px; font-weight: 400; }
+        .online-indicator {
+            width: 10px; height: 10px; background: var(--success); border-radius: 50%;
+            border: 2px solid #0f172a; position: absolute; bottom: 2px; right: 2px;
+            box-shadow: 0 0 8px var(--success);
+        }
+        .avatar-wrap { position: relative; flex-shrink: 0; }
+
+        .chat-area { flex: 1; display: flex; flex-direction: column; position: relative; height: 100%; width: 100%; }
+
+        .chat-header {
+            padding: 14px 24px; background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex; align-items: center; justify-content: space-between;
+            min-height: 72px; flex-shrink: 0;
+        }
+
+        .chat-header-info { display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0; }
+        .chat-header-name { font-weight: 700; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -0.3px; }
+        .chat-header-status {
+            font-size: 12px; color: var(--success); font-weight: 500;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .chat-header-status::before {
+            content: ''; width: 6px; height: 6px; background: var(--success); border-radius: 50%;
+            box-shadow: 0 0 6px var(--success); animation: pulse 2s ease-in-out infinite;
+        }
+
+        .back-btn {
+            display: none; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border);
+            color: var(--text-primary); font-size: 18px; width: 40px; height: 40px;
+            border-radius: 50%; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.3s; margin-right: 4px;
+        }
+        .back-btn:hover { background: rgba(255, 255, 255, 0.1); transform: translateX(-2px); }
+
+        .delete-chat-btn {
+            background: rgba(244, 63, 94, 0.08); color: var(--danger);
+            border: 1px solid rgba(244, 63, 94, 0.2); padding: 8px 16px;
+            border-radius: var(--radius-sm); cursor: pointer; font-size: 12px;
+            font-weight: 600; transition: all 0.3s; flex-shrink: 0; white-space: nowrap; letter-spacing: 0.5px;
+        }
+        .delete-chat-btn:hover { background: var(--danger); color: white; box-shadow: 0 4px 20px rgba(244, 63, 94, 0.3); transform: translateY(-1px); }
+
+        .messages-container {
+            flex: 1; overflow-y: auto; padding: 24px;
+            display: flex; flex-direction: column; gap: 10px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .message-wrapper {
+            display: flex; flex-direction: column; max-width: 75%;
+            animation: msgIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative;
+        }
+        @keyframes msgIn {
+            from { opacity: 0; transform: translateY(12px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .message-wrapper.own { align-self: flex-end; align-items: flex-end; }
+        .message-wrapper.other { align-self: flex-start; align-items: flex-start; }
+
+        .message {
+            padding: 12px 18px; border-radius: var(--radius-lg); font-size: 14.5px;
+            line-height: 1.5; display: flex; align-items: flex-end; gap: 10px;
+            word-break: break-word; position: relative; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .message-wrapper.own .message {
+            background: linear-gradient(135deg, var(--msg-own-start), var(--msg-own-end));
+            border-bottom-right-radius: 4px; color: white;
+        }
+        .message-wrapper.other .message {
+            background: var(--msg-other); border: 1px solid var(--glass-border);
+            border-bottom-left-radius: 4px; backdrop-filter: blur(10px);
+        }
+
+        .msg-time { font-size: 11px; opacity: 0.7; flex-shrink: 0; margin-top: 2px; font-weight: 500; }
+        .del-msg-icon {
+            font-size: 11px; cursor: pointer; color: var(--danger); opacity: 0;
+            transition: all 0.3s; margin-top: 6px; padding: 4px 10px;
+            border-radius: 6px; background: rgba(244, 63, 94, 0.1);
+            border: 1px solid rgba(244, 63, 94, 0.15); font-weight: 600; letter-spacing: 0.5px;
+        }
+        .del-msg-icon:hover { background: rgba(244, 63, 94, 0.2); transform: scale(1.05); }
+        .message-wrapper.own:hover .del-msg-icon { opacity: 1; }
+
+        .input-area {
+            padding: 16px 24px; background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            display: flex; gap: 12px; align-items: center; flex-shrink: 0;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .input-area input {
+            flex: 1; padding: 14px 22px; border-radius: 100px;
+            border: 1px solid var(--glass-border); background: rgba(2, 6, 23, 0.6);
+            color: var(--text-primary); font-size: 15px; outline: none;
+            min-width: 0; font-family: inherit; transition: all 0.3s;
+        }
+        .input-area input::placeholder { color: #475569; }
+        .input-area input:focus { border-color: rgba(139, 92, 246, 0.4); box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1); }
+
+        .send-btn {
+            width: 48px; height: 48px; border-radius: 50%; border: none;
+            background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+            color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3); position: relative; overflow: hidden;
+        }
+        .send-btn::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--accent-end), var(--accent-start));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .send-btn:hover { transform: scale(1.08) rotate(-5deg); box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4); }
+        .send-btn:hover::before { opacity: 1; }
+        .send-btn:active { transform: scale(0.95); }
+        .send-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
+        .send-btn svg { position: relative; z-index: 1; }
+
+        .empty-state {
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            color: var(--text-secondary); text-align: center; flex-direction: column;
+            padding: 40px; animation: fadeIn 1s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .empty-state-icon { font-size: 64px; margin-bottom: 24px; filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.3)); animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        .empty-state h3 {
+            font-size: 22px; font-weight: 700; margin-bottom: 6px;
+            background: linear-gradient(135deg, #fff, #c4b5fd);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .empty-state p { color: var(--text-secondary); font-size: 15px; margin-bottom: 8px; }
+        .empty-state .sponsor-tag {
+            margin-top: 32px; padding: 10px 24px;
+            background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.15);
+            border-radius: 100px; font-size: 11px; color: #c4b5fd;
+            font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+        }
+
+        .hidden { display: none !important; }
+
+        /* Debug panel */
+        .debug-panel {
+            position: fixed; bottom: 10px; left: 10px;
+            background: rgba(0,0,0,0.85); color: #00ff00;
+            padding: 10px 15px; border-radius: 8px;
+            font-family: monospace; font-size: 11px;
+            max-width: 350px; max-height: 200px;
+            overflow-y: auto; z-index: 9999;
+            border: 1px solid #333;
+        }
+        .debug-panel .debug-error { color: #ff4444; }
+        .debug-panel .debug-info { color: #44aaff; }
+        .debug-panel .debug-success { color: #44ff44; }
+
+        /* Toast notification */
+        .toast {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
+            background: rgba(244, 63, 94, 0.9); backdrop-filter: blur(10px);
+            color: white; padding: 12px 24px; border-radius: var(--radius-md);
+            font-size: 14px; font-weight: 600; z-index: 1000;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(244, 63, 94, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .sidebar { width: 100%; position: absolute; left: 0; top: 0; bottom: 0; z-index: 10; transform: translateX(0); }
+            .sidebar.hidden-mobile { transform: translateX(-100%); }
+            .chat-area { width: 100%; position: absolute; left: 0; top: 0; bottom: 0; z-index: 5; transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+            .chat-area.chat-visible { transform: translateX(0); }
+            .back-btn { display: flex; }
+            .empty-state { display: none !important; }
+            .message-wrapper { max-width: 85%; }
+            .auth-card { padding: 36px 24px; }
+            .messages-container { padding: 16px; }
+            .input-area { padding: 12px 16px; }
+            .chat-header { padding: 12px 16px; }
+            .debug-panel { max-width: 250px; font-size: 10px; }
+        }
+
+        @media (min-width: 769px) {
+            .sidebar { position: relative; transform: none !important; }
+            .chat-area { position: relative; transform: none !important; }
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent-start), var(--accent-end)); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--accent-end), var(--accent-start)); }
+
+        .contact-item { animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .contact-item:nth-child(1) { animation-delay: 0.05s; }
+        .contact-item:nth-child(2) { animation-delay: 0.1s; }
+        .contact-item:nth-child(3) { animation-delay: 0.15s; }
+        .contact-item:nth-child(4) { animation-delay: 0.2s; }
+        .contact-item:nth-child(5) { animation-delay: 0.25s; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
     </style>
 </head>
 <body>
-    <canvas id="particles-canvas"></canvas>
-    <nav id="navbar">
-        <a href="#" class="logo"><i class="fas fa-graduation-cap"></i>SIGMA</a>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#why-us">Why Us</a></li>
-            <li><a href="#fees">Fees</a></li>
-            <li><a href="#scholarship">Scholarships</a></li>
-            <li><a href="library.html">Library</a></li>
-            <li><a href="buy-sell-books.html">Buy & Sell</a></li>
-            <li><a href="https://sigmaclassez.github.io/mavischat/" target="_blank" style="color: var(--accent);"><i class="fas fa-comments"></i> Community Chat</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
-    </nav>
 
-    <!-- Floating Chat Button -->
-    <a href="https://sigmaclassez.github.io/mavischat/" target="_blank" class="floating-chat-btn" title="Join Community Chat">
-        <i class="fas fa-comments"></i>
-    </a>
+    <div class="mesh-bg"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-text">
-                <div class="hero-badge"><i class="fas fa-bell"></i>ADMISSIONS OPEN 2026-27</div>
-                <div class="hero-classes"><i class="fas fa-users"></i> Classes 6th to 10th</div>
-                <h1>Sigma <span>Coaching</span><br>Classes</h1>
-                <p class="tagline">"Learn Today, Lead Tomorrow"</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary"><i class="fas fa-user-plus"></i> Enroll Now</a>
-                    <a href="library.html" class="btn btn-outline"><i class="fas fa-book"></i> Study Material</a>
-                    <a href="buy-sell-books.html" class="btn btn-primary" style="background: #25D366; color: white; border: none;"><i class="fas fa-exchange-alt"></i> Buy & Sell Books</a>
-                    <a href="https://sigmaclassez.github.io/mavischat/" target="_blank" class="btn btn-primary" style="background: linear-gradient(135deg, #FF007A, #7928CA); color: white; border: none; box-shadow: 0 10px 30px rgba(121, 40, 202, 0.3);"><i class="fas fa-comments"></i> Community Chat</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="floating-card">
-                    <h3><i class="fas fa-book-open"></i> All Subjects Covered</h3>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check-circle"></i> Mathematics</li>
-                        <li><i class="fas fa-check-circle"></i> Science (Physics, Chemistry, Biology)</li>
-                        <li><i class="fas fa-check-circle"></i> English & Hindi</li>
-                        <li><i class="fas fa-check-circle"></i> Social Studies</li>
-                        <li><i class="fas fa-check-circle"></i> Computer Science</li>
-                    </ul>
-                </div>
-                <div class="mode-badges">
-                    <div class="mode-badge"><i class="fas fa-chalkboard-teacher"></i><div><strong>Offline</strong><small style="display:block;color:var(--text-light);">Classroom Learning</small></div></div>
-                    <div class="mode-badge"><i class="fas fa-laptop"></i><div><strong>Online</strong><small style="display:block;color:var(--text-light);">Live Interactive</small></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="stats-bar">
-        <div class="stat-item"><span class="stat-number" data-target="500">0</span><span class="stat-label">Happy Students</span></div>
-        <div class="stat-item"><span class="stat-number" data-target="50">0</span><span class="stat-label">Expert Teachers</span></div>
-        <div class="stat-item"><span class="stat-number" data-target="95">0</span><span class="stat-label">% Success Rate</span></div>
-        <div class="stat-item"><span class="stat-number" data-target="10">0</span><span class="stat-label">Years Experience</span></div>
+    <!-- Debug Panel -->
+    <div id="debugPanel" class="debug-panel">
+        <div class="debug-info">=== DEBUG CONSOLE ===</div>
     </div>
 
-    <section class="why-us" id="why-us">
-        <div class="section-header reveal"><h2>Why Choose Us?</h2><p>We provide the best learning environment with experienced faculty and modern teaching methods</p></div>
-        <div class="features-grid">
-            <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-book-open"></i></div><h3>All Subjects Covered</h3><p>Comprehensive curriculum covering Mathematics, Science, English, Hindi, Social Studies and Computer Science for classes 6th to 10th.</p></div>
-            <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-chalkboard"></i></div><h3>Offline & Online Classes</h3><p>Flexible learning options with both classroom-based offline sessions and interactive live online classes for your convenience.</p></div>
-            <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-user-tie"></i></div><h3>Expert Faculty</h3><p>Learn from highly qualified and experienced teachers who are dedicated to student success and personalized attention.</p></div>
-            <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-clipboard-check"></i></div><h3>Regular Assessments</h3><p>Weekly tests, monthly exams, and detailed performance analysis to track progress and identify improvement areas.</p></div>
-            <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-users"></i></div><h3>Small Batch Size</h3><p>Limited students per batch ensuring individual attention, doubt clearing sessions, and better interaction with teachers.</p></div>
-            <div class="feature-card reveal"><div class="feature-icon"><i class="fas fa-award"></i></div><h3>Scholarship Programs</h3><p>Up to 100% fee waiver for top performers and special scholarships for meritorious students based on board exams.</p></div>
-        </div>
-    </section>
+    <!-- Toast for errors -->
+    <div id="toast" class="toast"></div>
 
-    <section class="fee-section" id="fees">
-        <div class="section-header reveal"><h2>Fee Structure</h2><p>Affordable education with flexible payment options. Quality learning within your budget.</p></div>
-        <div class="fee-cards">
-            <div class="fee-card reveal"><div class="class-badge">Class 8th</div><div class="price"><span>Rs.</span>700</div><div class="price-period">per month</div><ul class="fee-features"><li><i class="fas fa-check"></i> All Subjects</li><li><i class="fas fa-check"></i> Weekly Tests</li><li><i class="fas fa-check"></i> Study Material</li><li><i class="fas fa-check"></i> Doubt Sessions</li><li><i class="fas fa-check"></i> Parent Meetings</li></ul><button class="btn-enroll" onclick="openEnrollModal('8th')">Enroll Now</button></div>
-            <div class="fee-card featured reveal"><div class="class-badge">Class 9th</div><div class="price"><span>Rs.</span>800</div><div class="price-period">per month</div><ul class="fee-features"><li><i class="fas fa-check"></i> All Subjects</li><li><i class="fas fa-check"></i> Board Preparation</li><li><i class="fas fa-check"></i> Sample Papers</li><li><i class="fas fa-check"></i> Mock Tests</li><li><i class="fas fa-check"></i> Career Counseling</li></ul><button class="btn-enroll" onclick="openEnrollModal('9th')">Enroll Now</button></div>
-            <div class="fee-card reveal"><div class="class-badge">Class 10th</div><div class="price"><span>Rs.</span>900</div><div class="price-period">per month</div><ul class="fee-features"><li><i class="fas fa-check"></i> All Subjects</li><li><i class="fas fa-check"></i> Board Focus</li><li><i class="fas fa-check"></i> Previous Year Papers</li><li><i class="fas fa-check"></i> Revision Classes</li><li><i class="fas fa-check"></i> Result Guarantee</li></ul><button class="btn-enroll" onclick="openEnrollModal('10th')">Enroll Now</button></div>
-        </div>
-    </section>
-
-    <section class="scholarship-section" id="scholarship">
-        <div class="section-header reveal"><h2>Scholarship Opportunities</h2><p>We believe in rewarding excellence. Avail these amazing scholarship programs</p></div>
-        <div class="scholarship-content">
-            <div class="scholarship-visual reveal"><i class="fas fa-trophy trophy"></i></div>
-            <div class="scholarship-items">
-                <div class="scholarship-item reveal"><i class="fas fa-medal"></i><div><h4>Up to 100% Fee Waiver</h4><p>For top performers in our entrance test and academic assessments</p></div></div>
-                <div class="scholarship-item reveal"><i class="fas fa-star"></i><div><h4>Merit Scholarships</h4><p>Special scholarships for meritorious students based on board exam results</p></div></div>
-                <div class="scholarship-item reveal"><i class="fas fa-clock"></i><div><h4>Early Bird Discounts</h4><p>Register early and get special discounts on admission fees</p></div></div>
-                <div class="scholarship-item reveal"><i class="fas fa-gift"></i><div><h4>Monthly Rewards</h4><p>Performance-based monthly rewards and recognition for consistent performers</p></div></div>
+    <!-- AUTH SCREEN -->
+    <div id="auth-screen">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <div class="auth-logo-ring"></div>
+                <div class="auth-logo-inner">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <polyline points="2 17 12 22 22 17"/>
+                        <polyline points="2 12 12 17 22 12"/>
+                    </svg>
+                </div>
             </div>
-        </div>
-    </section>
+            <h1 class="auth-title">Sigma Community</h1>
+            <p class="auth-subtitle">by Alok Sir</p>
+            <div class="auth-tagline">Connect & Learn</div>
 
-    <section class="library-section" id="library">
-        <div class="section-header reveal"><h2>Digital Library</h2><p>Access study materials, notes, and books anytime, anywhere</p></div>
-        <div class="upload-area reveal" id="uploadArea" onclick="document.getElementById('pdfInput').click()">
-            <i class="fas fa-cloud-upload-alt"></i>
-            <h3>Upload PDF Books</h3>
-            <p>Drag & drop files here or click to browse</p>
-            <input type="file" id="pdfInput" accept=".pdf" multiple onchange="handleFileUpload(event)">
-        </div>
-        <div class="library-grid" id="libraryGrid"></div>
-    </section>
+            <button class="google-btn" id="login-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                <span>Sign in with Google</span>
+            </button>
+            <p id="auth-error"></p>
 
-    <section class="contact-section" id="contact">
-        <div class="section-header reveal"><h2>Get In Touch</h2><p>Have questions? We'd love to hear from you. Contact us today!</p></div>
-        <div class="contact-grid">
-            <div class="contact-info reveal">
-                <div class="contact-card"><div class="icon-box"><i class="fas fa-map-marker-alt"></i></div><div><h4>Visit Us</h4><p>Lehara, Durga Mandir<br>Talab ke age, Prayagraj</p></div></div>
-                <div class="contact-card"><div class="icon-box"><i class="fas fa-phone-alt"></i></div><div><h4>Call Us</h4><a href="tel:9794981438">97949 81438</a><br><a href="tel:6387010267">63870 10267</a></div></div>
-                <div class="contact-card"><div class="icon-box"><i class="fas fa-clock"></i></div><div><h4>Working Hours</h4><p>Mon - Sat: 8:00 AM - 8:00 PM<br>Sunday: Closed</p></div></div>
+            <div class="sponsor-footer">
+                <p>Sponsored by Sigma Coaching Classes</p>
             </div>
-            <div class="contact-form reveal">
-                <form id="contactForm" onsubmit="handleContactSubmit(event)">
-                    <div class="form-group"><label>Student Name</label><input type="text" placeholder="Enter student name" required></div>
-                    <div class="form-group"><label>Parent's Phone</label><input type="tel" placeholder="Enter phone number" required></div>
-                    <div class="form-group"><label>Select Class</label><select required><option value="">Choose Class</option><option value="6">Class 6th</option><option value="7">Class 7th</option><option value="8">Class 8th</option><option value="9">Class 9th</option><option value="10">Class 10th</option></select></div>
-                    <div class="form-group"><label>Message (Optional)</label><textarea placeholder="Any specific requirements..."></textarea></div>
-                    <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Submit Enquiry</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand"><h3><i class="fas fa-graduation-cap"></i> Sigma Coaching Classes</h3><p>Right Guidance Today, Better Tomorrow Always. We are committed to providing quality education and shaping the future of our students with dedication and excellence.</p></div>
-            <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="#why-us"><i class="fas fa-chevron-right"></i> About Us</a></li><li><a href="#fees"><i class="fas fa-chevron-right"></i> Fee Structure</a></li><li><a href="#library"><i class="fas fa-chevron-right"></i> Library</a></li></ul></div>
-            <div class="footer-links"><h4>Classes</h4><ul><li><a href="#"><i class="fas fa-chevron-right"></i> Class 6th - 7th</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Class 8th</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Class 9th</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Class 10th</a></li></ul></div>
-            <div class="footer-links"><h4>Support</h4><ul><li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact Us</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> FAQs</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li></ul></div>
-        </div>
-        <div class="footer-bottom">
-            <div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div>
-            <p>&copy; 2026 Sigma Coaching Classes. All Rights Reserved. | Prayagraj, India</p>
-        </div>
-    </footer>
-
-    <div class="modal-overlay" id="enrollModal">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-            <h3><i class="fas fa-user-plus" style="color: var(--primary);"></i> Enroll for Class <span id="modalClass"></span></h3>
-            <form onsubmit="handleEnrollSubmit(event)">
-                <div class="form-group"><label>Student Name</label><input type="text" placeholder="Enter full name" required></div>
-                <div class="form-group"><label>Parent's Phone</label><input type="tel" placeholder="Enter phone number" required></div>
-                <div class="form-group"><label>Email Address</label><input type="email" placeholder="Enter email address"></div>
-                <button type="submit" class="btn-submit" style="margin-top: 10px;"><i class="fas fa-check"></i> Confirm Enrollment</button>
-            </form>
         </div>
     </div>
 
-    <div class="toast-container" id="toastContainer"></div>
-
-    <script>
-        // Particle System
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [], mouse = { x: null, y: null };
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        resizeCanvas(); window.addEventListener('resize', resizeCanvas);
-        class Particle { constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.size = Math.random() * 3 + 1; this.speedX = Math.random() * 1 - 0.5; this.speedY = Math.random() * 1 - 0.5; this.color = `rgba(255, 193, 7, ${Math.random() * 0.5})`; } update() { this.x += this.speedX; this.y += this.speedY; if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width; if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height; if (mouse.x != null) { let dx = mouse.x - this.x, dy = mouse.y - this.y, distance = Math.sqrt(dx*dx + dy*dy); if (distance < 100) { this.x -= dx * 0.02; this.y -= dy * 0.02; } } } draw() { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); } }
-        function initParticles() { particles = []; for (let i = 0; i < 80; i++) particles.push(new Particle()); }
-        initParticles();
-        function animateParticles() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); for (let i = 0; i < particles.length; i++) { for (let j = i; j < particles.length; j++) { let dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y, distance = Math.sqrt(dx*dx + dy*dy); if (distance < 120) { ctx.strokeStyle = `rgba(255, 193, 7, ${0.1 - distance/1200})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke(); } } } requestAnimationFrame(animateParticles); }
-        animateParticles();
-        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
-        window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
-
-        // Navbar Scroll
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
-
-        // Scroll Reveal
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.1 });
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        // Counter Animation
-        const statNumbers = document.querySelectorAll('.stat-number');
-        const counterObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { const target = parseInt(entry.target.getAttribute('data-target')); let current = 0; const increment = target / 50; const timer = setInterval(() => { current += increment; if (current >= target) { entry.target.textContent = target + (target === 95 ? '%' : '+'); clearInterval(timer); } else { entry.target.textContent = Math.floor(current) + (target === 95 ? '%' : '+'); } }, 30); counterObserver.unobserve(entry.target); } }); }, { threshold: 0.5 });
-        statNumbers.forEach(num => counterObserver.observe(num));
-
-        // Modal
-        function openEnrollModal(className) { document.getElementById('modalClass').textContent = className; document.getElementById('enrollModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
-        function closeModal() { document.getElementById('enrollModal').classList.remove('active'); document.body.style.overflow = 'auto'; }
-        document.getElementById('enrollModal').addEventListener('click', (e) => { if (e.target === document.getElementById('enrollModal')) closeModal(); });
-
-        // Toast
-        function showToast(message, type = 'success') { const container = document.getElementById('toastContainer'); const toast = document.createElement('div'); toast.className = `toast ${type}`; toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i><div><strong>${type === 'success' ? 'Success!' : 'Error!'}</strong><p style="margin:0;font-size:0.9rem;color:var(--text-light);">${message}</p></div>`; container.appendChild(toast); setTimeout(() => toast.classList.add('show'), 10); setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 3000); }
-
-        // Form Handlers
-        function handleEnrollSubmit(e) { e.preventDefault(); closeModal(); showToast('Enrollment request submitted successfully! We will contact you soon.'); e.target.reset(); }
-        function handleContactSubmit(e) { e.preventDefault(); showToast('Thank you for your enquiry! Our team will reach out to you shortly.'); e.target.reset(); }
-
-        // PDF Library System
-        let books = JSON.parse(localStorage.getItem('sigmaBooks')) || [
-            { id: 1, title: 'NCERT Mathematics Class 10', subject: 'Mathematics', class: '10th', size: '15.2 MB', date: '2026-01-15' },
-            { id: 2, title: 'Science NCERT Solutions', subject: 'Science', class: '9th', size: '12.8 MB', date: '2026-01-10' },
-            { id: 3, title: 'English Grammar Guide', subject: 'English', class: '8th', size: '8.5 MB', date: '2026-01-08' },
-            { id: 4, title: 'Social Studies Notes', subject: 'Social Science', class: '10th', size: '10.1 MB', date: '2026-01-05' },
-            { id: 5, title: 'Hindi Vyakaran', subject: 'Hindi', class: '9th', size: '6.3 MB', date: '2026-01-03' },
-            { id: 6, title: 'Computer Basics', subject: 'Computer', class: '8th', size: '9.7 MB', date: '2026-01-01' }
-        ];
-
-        function renderBooks() {
-            const grid = document.getElementById('libraryGrid');
-            grid.innerHTML = books.map(book => `
-                <div class="book-card reveal">
-                    <div class="book-cover"><i class="fas fa-file-pdf"></i></div>
-                    <div class="book-info">
-                        <h3>${book.title}</h3>
-                        <div class="book-meta"><span><i class="fas fa-book"></i> ${book.subject}</span><span><i class="fas fa-graduation-cap"></i> Class ${book.class}</span></div>
-                        <div class="book-meta"><span><i class="fas fa-hdd"></i> ${book.size}</span><span><i class="fas fa-calendar"></i> ${book.date}</span></div>
-                        <div class="book-actions">
-                            <button class="btn-view" onclick="viewBook(${book.id})"><i class="fas fa-eye"></i> View</button>
-                            <button class="btn-download" onclick="downloadBook(${book.id})"><i class="fas fa-download"></i> Download</button>
+    <!-- MAIN APP -->
+    <div id="app">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="my-profile">
+                    <div class="avatar-wrap">
+                        <img src="" id="my-avatar" class="avatar" alt="Me">
+                        <div class="online-indicator"></div>
+                    </div>
+                    <div style="min-width: 0;">
+                        <div id="my-name" style="font-weight: 700; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></div>
+                        <div style="font-size: 12px; color: var(--success); font-weight: 500; display: flex; align-items: center; gap: 4px;">
+                            <span style="width: 6px; height: 6px; background: var(--success); border-radius: 50%; box-shadow: 0 0 6px var(--success);"></span>
+                            Online
                         </div>
                     </div>
                 </div>
-            `).join('');
-            document.querySelectorAll('.book-card').forEach(el => revealObserver.observe(el));
-        }
-        renderBooks();
+                <button class="logout-btn" id="logout-btn">Log Out</button>
+            </div>
 
-        function handleFileUpload(event) {
-            const files = event.target.files;
-            if (!files.length) return;
-            Array.from(files).forEach(file => {
-                if (file.type !== 'application/pdf') { showToast('Please upload PDF files only!', 'error'); return; }
-                const newBook = {
-                    id: Date.now() + Math.random(),
-                    title: file.name.replace('.pdf', ''),
-                    subject: 'General',
-                    class: 'All',
-                    size: (file.size / (1024 * 1024)).toFixed(1) + ' MB',
-                    date: new Date().toISOString().split('T')[0],
-                    fileData: null
-                };
-                const reader = new FileReader();
-                reader.onload = (e) => { newBook.fileData = e.target.result; books.unshift(newBook); localStorage.setItem('sigmaBooks', JSON.stringify(books)); renderBooks(); showToast(`"${newBook.title}" uploaded successfully!`); };
-                reader.readAsDataURL(file);
+            <div class="section-title">Available Users</div>
+            <div class="chat-list" id="contact-list"></div>
+        </div>
+
+        <div class="chat-area" id="chat-area">
+            <div class="empty-state" id="empty-state">
+                <div class="empty-state-icon">💬</div>
+                <h3>Welcome to Sigma Community</h3>
+                <p>by Alok Sir</p>
+                <p style="margin-top: 8px; font-size: 13px; max-width: 300px; line-height: 1.5;">Select a user from the sidebar to start a conversation. Your messages are secure and real-time.</p>
+                <div class="sponsor-tag">Sponsored by Sigma Coaching Classes</div>
+            </div>
+
+            <div id="active-chat" class="hidden" style="display: flex; flex-direction: column; height: 100%;">
+                <div class="chat-header">
+                    <div class="chat-header-info">
+                        <button class="back-btn" id="back-btn">←</button>
+                        <div class="avatar-wrap">
+                            <img src="" id="chat-avatar" class="avatar" alt="">
+                            <div class="online-indicator"></div>
+                        </div>
+                        <div style="min-width: 0;">
+                            <div class="chat-header-name" id="chat-name"></div>
+                            <div class="chat-header-status">online</div>
+                        </div>
+                    </div>
+                    <button class="delete-chat-btn" id="clear-chat-btn">Clear Chat</button>
+                </div>
+
+                <div class="messages-container" id="messages"></div>
+
+                <div class="input-area">
+                    <input type="text" id="msg-input" placeholder="Type a message..." autocomplete="off">
+                    <button class="send-btn" id="send-btn" disabled>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+        import { getFirestore, collection, doc, setDoc, addDoc, deleteDoc, getDocs, query, orderBy, onSnapshot, serverTimestamp, getDoc } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBdz1-Y06YkgAD-Ty7AQkSRYb1dwNDAoqo",
+            authDomain: "sigmachat-7b6fc.firebaseapp.com",
+            projectId: "sigmachat-7b6fc",
+            storageBucket: "sigmachat-7b6fc.firebasestorage.app",
+            messagingSenderId: "991645777861",
+            appId: "1:991645777861:web:940b910b80fdcd90c815ac"
+        };
+
+        // Debug logger
+        function debug(msg, type = 'info') {
+            const panel = document.getElementById('debugPanel');
+            const div = document.createElement('div');
+            div.className = type === 'error' ? 'debug-error' : type === 'success' ? 'debug-success' : 'debug-info';
+            const time = new Date().toLocaleTimeString();
+            div.textContent = `[${time}] ${msg}`;
+            panel.appendChild(div);
+            panel.scrollTop = panel.scrollHeight;
+            console.log(`[${type.toUpperCase()}] ${msg}`);
+        }
+
+        debug('=== APP STARTING ===');
+
+        let app, auth, db;
+        try {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+            debug('Firebase initialized successfully', 'success');
+        } catch (err) {
+            debug('Firebase init FAILED: ' + err.message, 'error');
+            throw err;
+        }
+
+        const provider = new GoogleAuthProvider();
+
+        let currentUser = null;
+        let currentRoomId = null;
+        let unsubUsers = null;
+        let unsubMessages = null;
+
+        const isMobile = () => window.innerWidth <= 768;
+
+        // Toast helper
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+
+        // --- AUTHENTICATION ---
+        document.getElementById('login-btn').onclick = async () => {
+            debug('Login button clicked');
+            try {
+                debug('Opening Google sign-in popup...');
+                const result = await signInWithPopup(auth, provider);
+                debug('Google sign-in SUCCESS: ' + result.user.email, 'success');
+            } catch (err) {
+                debug('Google sign-in FAILED: ' + err.code + ' - ' + err.message, 'error');
+                const errEl = document.getElementById('auth-error');
+                errEl.textContent = err.message;
+            }
+        };
+
+        document.getElementById('logout-btn').onclick = () => {
+            debug('Logout clicked');
+            signOut(auth);
+        };
+
+        onAuthStateChanged(auth, async (user) => {
+            debug('Auth state changed. User: ' + (user ? user.email : 'null'));
+            if (user) {
+                currentUser = user;
+                document.getElementById('auth-screen').style.display = 'none';
+                document.getElementById('app').classList.add('active');
+
+                document.getElementById('my-name').textContent = user.displayName;
+                document.getElementById('my-avatar').src = user.photoURL;
+
+                debug('Saving user to Firestore...');
+                try {
+                    await setDoc(doc(db, 'users', user.uid), {
+                        uid: user.uid,
+                        name: user.displayName,
+                        photo: user.photoURL,
+                        email: user.email,
+                        lastLogin: serverTimestamp()
+                    });
+                    debug('User saved to Firestore successfully', 'success');
+                } catch (err) {
+                    debug('Failed to save user: ' + err.message, 'error');
+                    showToast('Error saving profile: ' + err.message);
+                }
+
+                loadUsers();
+            } else {
+                currentUser = null;
+                document.getElementById('app').classList.remove('active');
+                document.getElementById('auth-screen').style.display = 'flex';
+                resetChatUI();
+            }
+        });
+
+        // --- LOAD USERS ---
+        function loadUsers() {
+            if(unsubUsers) unsubUsers();
+            debug('Loading users from Firestore...');
+
+            unsubUsers = onSnapshot(collection(db, 'users'), (snapshot) => {
+                debug('Users snapshot received: ' + snapshot.size + ' users', 'success');
+                const list = document.getElementById('contact-list');
+                list.innerHTML = '';
+                let count = 0;
+                snapshot.forEach((docSnap) => {
+                    const user = docSnap.data();
+                    if (user.uid === currentUser.uid) return;
+                    count++;
+
+                    const div = document.createElement('div');
+                    div.className = 'contact-item';
+                    div.innerHTML = `
+                        <div class="avatar-wrap">
+                            <img src="${user.photo}" class="avatar" alt="${user.name}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=7c3aed&color=fff'">
+                            <div class="online-indicator"></div>
+                        </div>
+                        <div style="min-width: 0;">
+                            <div class="contact-name">${user.name}</div>
+                            <div class="contact-email">${user.email}</div>
+                        </div>
+                    `;
+
+                    div.onclick = () => {
+                        document.querySelectorAll('.contact-item').forEach(el => el.classList.remove('active'));
+                        div.classList.add('active');
+                        openChat(user);
+                    };
+                    list.appendChild(div);
+                });
+                debug('Displayed ' + count + ' other users', 'info');
+            }, (err) => {
+                debug('USERS LISTENER ERROR: ' + err.code + ' - ' + err.message, 'error');
+                showToast('Failed to load users: ' + err.message);
             });
-            event.target.value = '';
         }
 
-        function viewBook(id) {
-            const book = books.find(b => b.id === id);
-            if (book && book.fileData) { window.open(book.fileData, '_blank'); }
-            else { showToast('Demo: PDF viewer would open here for "' + book.title + '"'); }
+        // --- OPEN CHAT ---
+        function openChat(targetUser) {
+            const ids = [currentUser.uid, targetUser.uid].sort();
+            currentRoomId = `${ids[0]}_${ids[1]}`;
+            debug('Opening chat room: ' + currentRoomId);
+            debug('My UID: ' + currentUser.uid);
+            debug('Target UID: ' + targetUser.uid);
+
+            document.getElementById('empty-state').classList.add('hidden');
+            document.getElementById('active-chat').classList.remove('hidden');
+            document.getElementById('chat-name').textContent = targetUser.name;
+            document.getElementById('chat-avatar').src = targetUser.photo;
+
+            if (isMobile()) {
+                document.getElementById('sidebar').classList.add('hidden-mobile');
+                document.getElementById('chat-area').classList.add('chat-visible');
+            }
+
+            loadMessages(currentRoomId);
         }
 
-        function downloadBook(id) {
-            const book = books.find(b => b.id === id);
-            if (book && book.fileData) {
-                const link = document.createElement('a'); link.href = book.fileData; link.download = book.title + '.pdf'; link.click();
-                showToast(`"${book.title}" downloaded successfully!`);
-            } else { showToast('Demo: Download started for "' + book.title + '"'); }
+        // --- BACK BUTTON (Mobile) ---
+        document.getElementById('back-btn').onclick = () => {
+            document.getElementById('sidebar').classList.remove('hidden-mobile');
+            document.getElementById('chat-area').classList.remove('chat-visible');
+            document.querySelectorAll('.contact-item').forEach(el => el.classList.remove('active'));
+        };
+
+        // --- LOAD MESSAGES ---
+        function loadMessages(roomId) {
+            if (unsubMessages) {
+                debug('Unsubscribing from previous messages');
+                unsubMessages();
+            }
+
+            debug('Loading messages for room: ' + roomId);
+            const msgRef = collection(db, 'rooms', roomId, 'messages');
+            const q = query(msgRef, orderBy('timestamp', 'asc'));
+
+            unsubMessages = onSnapshot(q, (snapshot) => {
+                debug('Messages snapshot received: ' + snapshot.size + ' messages', 'success');
+                const container = document.getElementById('messages');
+                container.innerHTML = '';
+                snapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    const isOwn = data.senderId === currentUser.uid;
+                    const time = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) : '';
+                    const div = document.createElement('div');
+                    div.className = `message-wrapper ${isOwn ? 'own' : 'other'}`;
+                    div.innerHTML = `
+                        <div class="message">
+                            <span>${escapeHtml(data.text)}</span>
+                            <span class="msg-time">${time}</span>
+                        </div>
+                        ${isOwn ? `<div class="del-msg-icon" onclick="window.deleteMsg('${docSnap.id}')">Delete</div>` : ''}
+                    `;
+                    container.appendChild(div);
+                });
+                container.scrollTop = container.scrollHeight;
+            }, (err) => {
+                debug('MESSAGES LISTENER ERROR: ' + err.code + ' - ' + err.message, 'error');
+                showToast('Failed to load messages: ' + err.message);
+            });
         }
 
-        // Drag & Drop
-        const uploadArea = document.getElementById('uploadArea');
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => { uploadArea.addEventListener(eventName, preventDefaults, false); });
-        function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
-        ['dragenter', 'dragover'].forEach(eventName => { uploadArea.addEventListener(eventName, () => uploadArea.classList.add('dragover'), false); });
-        ['dragleave', 'drop'].forEach(eventName => { uploadArea.addEventListener(eventName, () => uploadArea.classList.remove('dragover'), false); });
-        uploadArea.addEventListener('drop', (e) => { const dt = e.dataTransfer; const files = dt.files; document.getElementById('pdfInput').files = files; handleFileUpload({ target: { files: files } }); });
+        // --- SEND MESSAGES ---
+        const msgInput = document.getElementById('msg-input');
+        const sendBtn = document.getElementById('send-btn');
 
-        // Mobile Menu
-        function toggleMobileMenu() { showToast('Mobile menu - navigate using the page sections'); }
+        msgInput.oninput = () => sendBtn.disabled = !msgInput.value.trim();
+        msgInput.onkeydown = (e) => { if (e.key === 'Enter') sendMessage(); };
+        sendBtn.onclick = sendMessage;
 
-        // Smooth scroll for nav links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); });
+        async function sendMessage() {
+            const text = msgInput.value.trim();
+            if (!text || !currentRoomId) {
+                debug('Cannot send: text=' + text + ', room=' + currentRoomId, 'error');
+                return;
+            }
+
+            msgInput.value = '';
+            sendBtn.disabled = true;
+
+            try {
+                const msgData = {
+                    text: text,
+                    senderId: currentUser.uid,
+                    senderName: currentUser.displayName,
+                    senderPhoto: currentUser.photoURL,
+                    timestamp: serverTimestamp()
+                };
+                debug('Sending message to room: ' + currentRoomId);
+                debug('Message data: ' + JSON.stringify(msgData));
+                const docRef = await addDoc(collection(db, 'rooms', currentRoomId, 'messages'), msgData);
+                debug('Message sent! Doc ID: ' + docRef.id, 'success');
+            } catch (err) {
+                debug('SEND MESSAGE FAILED: ' + err.code + ' - ' + err.message, 'error');
+                showToast('Failed to send: ' + err.message);
+            }
+
+            msgInput.focus();
+        }
+
+        // --- DELETE LOGIC ---
+        window.deleteMsg = async function(msgId) {
+            if (!currentRoomId) return;
+            if (confirm("Delete this message?")) {
+                try {
+                    await deleteDoc(doc(db, 'rooms', currentRoomId, 'messages', msgId));
+                    debug('Message deleted: ' + msgId, 'success');
+                } catch (err) {
+                    debug('DELETE FAILED: ' + err.message, 'error');
+                    showToast('Failed to delete: ' + err.message);
+                }
+            }
+        };
+
+        document.getElementById('clear-chat-btn').onclick = async () => {
+            if (!currentRoomId) return;
+            if (confirm("Delete all messages in this chat?")) {
+                try {
+                    const snapshot = await getDocs(query(collection(db, 'rooms', currentRoomId, 'messages')));
+                    const deletePromises = snapshot.docs.map(d => deleteDoc(doc(db, 'rooms', currentRoomId, 'messages', d.id)));
+                    await Promise.all(deletePromises);
+                    debug('Chat cleared: ' + snapshot.size + ' messages deleted', 'success');
+                } catch (err) {
+                    debug('CLEAR CHAT FAILED: ' + err.message, 'error');
+                    showToast('Failed to clear chat: ' + err.message);
+                }
+            }
+        };
+
+        function resetChatUI() {
+            if(unsubMessages) unsubMessages();
+            if(unsubUsers) unsubUsers();
+            currentRoomId = null;
+            document.getElementById('messages').innerHTML = '';
+            document.getElementById('empty-state').classList.remove('hidden');
+            document.getElementById('active-chat').classList.add('hidden');
+            document.getElementById('sidebar').classList.remove('hidden-mobile');
+            document.getElementById('chat-area').classList.remove('chat-visible');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        window.addEventListener('resize', () => {
+            if (!isMobile()) {
+                document.getElementById('sidebar').classList.remove('hidden-mobile');
+                document.getElementById('chat-area').classList.remove('chat-visible');
+            }
+        });
+
+        debug('=== APP LOADED ===');
     </script>
-    <script src="books-data.js"></script>
-    <script src="library.js"></script>
 </body>
 </html>
